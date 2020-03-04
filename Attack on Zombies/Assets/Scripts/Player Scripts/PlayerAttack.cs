@@ -17,7 +17,7 @@ public class PlayerAttack : MonoBehaviour {
 
     private GameObject crosshair;
 
-    private bool is_Aiming;
+    private bool is_Aiming;   
 
     [SerializeField]
     private GameObject arrow_Prefab, spear_Prefab;
@@ -38,10 +38,10 @@ public class PlayerAttack : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () {       
         WeaponShoot();
         ZoomInAndOut();
-    }
+    }   
 
     void WeaponShoot() {
         // if we have assault riffle
@@ -57,27 +57,24 @@ public class PlayerAttack : MonoBehaviour {
         } else {
             if(Input.GetMouseButtonDown(0)) {
                 // handle melee weapons such as axe
-                if(weapon_Manager.GetCurrentSelectedWeapon().tag == Tags.MELEE_TAG) {
-                    Debug.Log("melee attack");
+                if(weapon_Manager.GetCurrentSelectedWeapon().tag == Tags.MELEE_TAG) {                    
                     weapon_Manager.GetCurrentSelectedWeapon().ShootAnimation();
                 }
                 // handle shoot
-                if(weapon_Manager.GetCurrentSelectedWeapon().Bullet_Type == BulletType.BULLET) {
-                    Debug.Log("ranged attack");
+                if(weapon_Manager.GetCurrentSelectedWeapon().Bullet_Type == BulletType.BULLET) {                  
                     weapon_Manager.GetCurrentSelectedWeapon().ShootAnimation();
                     //BulletFired();
                 } else {
                     // we have an arrow or spear
                     if(is_Aiming) {
                         weapon_Manager.GetCurrentSelectedWeapon().ShootAnimation();
-                        if(weapon_Manager.GetCurrentSelectedWeapon().Bullet_Type == BulletType.ARROW) {
-                            // throw arrow
-                            ThrowProjectile(Tags.ARROW);
-
-                        } else if(weapon_Manager.GetCurrentSelectedWeapon().Bullet_Type == BulletType.SPEAR) {
-
+                        if(weapon_Manager.GetCurrentSelectedWeapon().Bullet_Type == BulletType.ARROW ) {                                
                             // throw spear
-                            ThrowProjectile(Tags.SPEAR);
+                            ThrowProjectile(Tags.ARROW);                            
+
+                        } else if(weapon_Manager.GetCurrentSelectedWeapon().Bullet_Type == BulletType.SPEAR ) {                                                                                
+                            // throw spear
+                            ThrowProjectile(Tags.SPEAR);                            
                         }
                     }
                 } // else

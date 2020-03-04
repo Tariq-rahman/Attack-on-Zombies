@@ -47,7 +47,7 @@ public class WeaponHandler : MonoBehaviour {
     public void Aim(bool canAim)
     {
         Anim.SetBool(AnimationTags.AIM_PARAMETER, canAim);
-    }
+    }   
     void Turn_On_MuzzleFlash()
     {
         muzzle_Flash.SetActive(true);
