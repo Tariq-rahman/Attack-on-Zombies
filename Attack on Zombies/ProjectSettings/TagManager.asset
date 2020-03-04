@@ -10,6 +10,7 @@ TagManager:
   - Crosshair
   - FP Camera
   - Enemy
+  - Death
   layers:
   - Default
   - TransparentFX

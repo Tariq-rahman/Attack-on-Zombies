@@ -12,6 +12,7 @@ public class HealthScript : MonoBehaviour {
 
     public float health = 100f;   
     private bool is_Dead;
+    public Animator death_Transition;
 
     //private EnemyAudio enemyAudio;
     //private PlayerStats player_Stats;
@@ -27,7 +28,7 @@ public class HealthScript : MonoBehaviour {
             enemy_Controller = GetComponent<EnemyController>();
             navAgent = GetComponent<NavMeshAgent>();
         }
-        
+        death_Transition = GameObject.FindGameObjectWithTag(AnimationTags.DEATH).GetComponent<Animator>();
     }
 	
 	public void ApplyDamage(float damage)
@@ -46,8 +47,8 @@ public class HealthScript : MonoBehaviour {
 
         if (health <= 0)
         {
-            Die();
             is_Dead = true;
+            Die();            
         }
     }
 
@@ -66,14 +67,14 @@ public class HealthScript : MonoBehaviour {
             // call enemy manager to stop spawning enemies
             //EnemyManager.instance.StopSpawning();
 
-            /* GetComponent<FirstPersonController>().enabled = false;
-             GetComponent<EnhancedMovement>().enabled = false;
-             GetComponent<PlayerAttack>().enabled = false;
-             GetComponent<WeaponManager>().GetCurrentSelectedWeapon().gameObject.SetActive(false);*/
-            gameObject.SetActive(false);
+            GetComponent<FirstPersonController>().enabled = false;
+            GetComponent<EnhancedMovement>().enabled = false;
+            GetComponent<PlayerAttack>().enabled = false;
+            GetComponent<WeaponManager>().GetCurrentSelectedWeapon().gameObject.SetActive(false);          
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            SceneManager.LoadSceneAsync(SceneNames.DEATH_SCREEN, LoadSceneMode.Single);
+            death_Transition.SetBool(AnimationTags.IS_DEAD, is_Dead);
+
         } else if(gameObject.tag == Tags.ENEMY_TAG)
         {
             Debug.Log("Enemy has died");    

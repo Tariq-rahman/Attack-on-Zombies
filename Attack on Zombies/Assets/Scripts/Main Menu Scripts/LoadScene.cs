@@ -7,6 +7,6 @@ public class LoadScene : MonoBehaviour {
 
 	public void LoadSceneOnClick(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
-    }
+        SceneManager.LoadSceneAsync(sceneName);
+    }    
 }
