@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - Crosshair
   - FP Camera
+  - Enemy
   layers:
   - Default
   - TransparentFX

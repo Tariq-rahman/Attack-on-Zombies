@@ -51,7 +51,7 @@ public class PlayerAttack : MonoBehaviour {
             if(Input.GetMouseButton(0) && Time.time > nextTimeToFire) {
                 nextTimeToFire = Time.time + 1f / fireRate;
                 weapon_Manager.GetCurrentSelectedWeapon().ShootAnimation();
-                 //BulletFired();
+                 BulletFired();
             }
             // if we have a regular weapon that shoots once
         } else {
@@ -63,7 +63,7 @@ public class PlayerAttack : MonoBehaviour {
                 // handle shoot
                 if(weapon_Manager.GetCurrentSelectedWeapon().Bullet_Type == BulletType.BULLET) {                  
                     weapon_Manager.GetCurrentSelectedWeapon().ShootAnimation();
-                    //BulletFired();
+                    BulletFired();
                 } else {
                     // we have an arrow or spear
                     if(is_Aiming) {
@@ -134,14 +134,17 @@ public class PlayerAttack : MonoBehaviour {
         }
     } // throw arrow or spear
 
-    /*void BulletFired() {
+    void BulletFired()
+    {
         RaycastHit hit;
-        if(Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit)) {
-            if(hit.transform.tag == Tags.ENEMY_TAG) {
+        if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit))
+        {
+            if (hit.transform.tag == Tags.ENEMY_TAG)
+            {
                 hit.transform.GetComponent<HealthScript>().ApplyDamage(damage);
             }
         }
-    } // bullet fired*/
+    } // bullet fired
 } // class
 
 

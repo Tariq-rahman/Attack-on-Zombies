@@ -31,3 +31,11 @@ public class AnimationTags
     public const string ATTACK_TRIGGER = "Attack";
     public const string DEAD_TRIGGER = "Dead";
 }
+
+public class SceneNames
+{
+    public const string DEATH_SCREEN = "DeathScene";
+    public const string LEVEL_1 = "Level1";
+    public const string MAIN_MENU = "MainMenu";
+}
+
