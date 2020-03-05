@@ -51,7 +51,7 @@ public class PlayerAttack : MonoBehaviour {
             if(Input.GetMouseButton(0) && Time.time > nextTimeToFire) {
                 nextTimeToFire = Time.time + 1f / fireRate;
                 weapon_Manager.GetCurrentSelectedWeapon().ShootAnimation();
-                 BulletFired();
+                BulletFired();
             }
             // if we have a regular weapon that shoots once
         } else {

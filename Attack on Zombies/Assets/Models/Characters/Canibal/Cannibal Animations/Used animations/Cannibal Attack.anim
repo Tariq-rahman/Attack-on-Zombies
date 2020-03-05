@@ -88467,6 +88467,20 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
+  - time: 0.5
+    functionName: Play_Short_Scream_Sound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.1666666
+    functionName: Play_Attack_Sound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.2
     functionName: Turn_On_AttackPoint
     data: 
@@ -88475,7 +88489,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1.203576
-    functionName: OnAnimationDamage
+    functionName: Turn_On_AttackPoint
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

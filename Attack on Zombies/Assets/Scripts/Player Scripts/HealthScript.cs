@@ -9,24 +9,23 @@ public class HealthScript : MonoBehaviour {
     private EnemyAnimator enemy_Anim;
     private NavMeshAgent navAgent;
     private EnemyController enemy_Controller;
-
+    private EnemySoundController enemy_Sound;
     public float health = 100f;   
     private bool is_Dead;
-    public Animator death_Transition;
-
-    //private EnemyAudio enemyAudio;
-    //private PlayerStats player_Stats;
+    public Animator death_Transition;    
+    private PlayerStats player_Stats;
 
     void Awake()
     {
         if (gameObject.tag == Tags.PLAYER_TAG)
         {
-            //player stats
+            player_Stats = GetComponent<PlayerStats>();
         } else if(gameObject.tag == Tags.ENEMY_TAG)
         {
             enemy_Anim = GetComponent<EnemyAnimator>();
             enemy_Controller = GetComponent<EnemyController>();
             navAgent = GetComponent<NavMeshAgent>();
+            enemy_Sound = GetComponent<EnemySoundController>();
         }
         death_Transition = GameObject.FindGameObjectWithTag(AnimationTags.DEATH).GetComponent<Animator>();
     }
@@ -35,6 +34,7 @@ public class HealthScript : MonoBehaviour {
     {
         if (is_Dead)
             return;
+
         health -= damage;
         Debug.Log(gameObject.tag.ToString() + " health is now: " + health.ToString());
         if(gameObject.tag == Tags.ENEMY_TAG)
@@ -42,9 +42,14 @@ public class HealthScript : MonoBehaviour {
             if (enemy_Controller.Enemy_State == EnemyState.PATROL)
             {
                 enemy_Controller.chase_Distance = 50f;
+                enemy_Sound.Play_Scream_Sound();
             }
         }
-
+        if(gameObject.tag == Tags.PLAYER_TAG)
+        {
+            //play hurt sounds
+            player_Stats.Display_HealthStats(health);
+        }
         if (health <= 0)
         {
             is_Dead = true;
@@ -65,9 +70,10 @@ public class HealthScript : MonoBehaviour {
             }
 
             // call enemy manager to stop spawning enemies
-            //EnemyManager.instance.StopSpawning();
+            EnemyManager.instance.StopSpawning();
 
-            GetComponent<FirstPersonController>().enabled = false;
+            GetComponent<PlayerMovement>().enabled = false;
+            //GetComponent<MouseLook>().enabled = false;
             GetComponent<EnhancedMovement>().enabled = false;
             GetComponent<PlayerAttack>().enabled = false;
             GetComponent<WeaponManager>().GetCurrentSelectedWeapon().gameObject.SetActive(false);          
@@ -76,8 +82,8 @@ public class HealthScript : MonoBehaviour {
             death_Transition.SetBool(AnimationTags.IS_DEAD, is_Dead);
 
         } else if(gameObject.tag == Tags.ENEMY_TAG)
-        {
-            Debug.Log("Enemy has died");    
+        {                                             
+            enemy_Anim.Dead();
             GetComponent<Animator>().enabled = false;
             GetComponent<BoxCollider>().isTrigger = false;
             GetComponent<Rigidbody>().AddTorque(-transform.forward * 50f);
@@ -86,10 +92,20 @@ public class HealthScript : MonoBehaviour {
             navAgent.enabled = false;
             enemy_Anim.enabled = false;
 
-            //StartCoroutine(DeadSound());
-
+            StartCoroutine(DeadSound());
             // EnemyManager spawn more enemies
-            //EnemyManager.instance.EnemyDied(true);
-        }
+            EnemyManager.instance.Enemy_Died();
+
+            Invoke("TurnOffGameObject", 3f);
+        }        
+    }
+    public void TurnOffGameObject()
+    {
+        gameObject.SetActive(false);
+    }
+    IEnumerator DeadSound()
+    {
+        yield return new WaitForSeconds(0.3f);
+        enemy_Sound.Play_Death_Sound();
     }
 }

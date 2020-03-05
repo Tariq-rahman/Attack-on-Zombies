@@ -6,8 +6,8 @@ using Random = UnityEngine.Random;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
-    [RequireComponent(typeof (CharacterController))]
-    [RequireComponent(typeof (AudioSource))]
+    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
         [SerializeField] private bool m_IsWalking;
@@ -31,6 +31,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
+        [SerializeField] private float sprint_Value = 100f;        
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -168,7 +169,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void PlayFootStepAudio()
         {
-            if (!m_CharacterController.isGrounded)
+            if (!m_CharacterController.isGrounded || m_IsCrouching)
             {
                 return;
             }
@@ -226,14 +227,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 speed = m_CrouchSpeed;
                 Player_View.localPosition = new Vector3(0f, m_CrouchHeight, 0f);
-            } else if(m_IsWalking)
-            {
-                speed = m_WalkSpeed;
-                Player_View.localPosition = new Vector3(0f, m_StandHeight, 0f);
-            } else
+            } else if(!m_IsWalking && sprint_Value > 0f)
             {
                 speed = m_RunSpeed;
                 Player_View.localPosition = new Vector3(0f, m_StandHeight, 0f);
+
+            } else
+            {
+                speed = m_WalkSpeed;
+                Player_View.localPosition = new Vector3(0f, m_StandHeight, 0f);
+                
             }            
             m_Input = new Vector2(horizontal, vertical);
 

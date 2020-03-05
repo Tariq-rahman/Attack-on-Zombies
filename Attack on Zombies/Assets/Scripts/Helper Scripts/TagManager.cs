@@ -18,6 +18,18 @@ public class Tags
 
 }
 
+public class Axis
+{
+    public const string HORIZONTAL = "Horizontal";
+    public const string VERTICAL = "Vertical";
+}
+
+public class MouseAxis
+{
+    public const string MOUSE_X = "Mouse X";
+    public const string MOUSE_Y = "Mouse Y";
+}
+
 public class AnimationTags 
 {    
     public const string ZOOM_IN_ANIM = "ZoomIn";
