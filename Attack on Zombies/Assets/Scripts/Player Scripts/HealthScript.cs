@@ -35,8 +35,7 @@ public class HealthScript : MonoBehaviour {
         if (is_Dead)
             return;
 
-        health -= damage;
-        Debug.Log(gameObject.tag.ToString() + " health is now: " + health.ToString());
+        health -= damage;        
         if(gameObject.tag == Tags.ENEMY_TAG)
         {
             if (enemy_Controller.Enemy_State == EnemyState.PATROL)
@@ -60,8 +59,7 @@ public class HealthScript : MonoBehaviour {
     public void Die()
     {
         if (gameObject.tag == Tags.PLAYER_TAG)
-        {
-            Debug.Log("Player has died");
+        {            
             GameObject[] enemies = GameObject.FindGameObjectsWithTag(Tags.ENEMY_TAG);
 
             for (int i = 0; i < enemies.Length; i++)
