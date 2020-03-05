@@ -70,8 +70,7 @@ public class HealthScript : MonoBehaviour {
             // call enemy manager to stop spawning enemies
             EnemyManager.instance.StopSpawning();
 
-            GetComponent<PlayerMovement>().enabled = false;
-            //GetComponent<MouseLook>().enabled = false;
+            GetComponent<PlayerMovement>().enabled = false;            
             GetComponent<EnhancedMovement>().enabled = false;
             GetComponent<PlayerAttack>().enabled = false;
             GetComponent<WeaponManager>().GetCurrentSelectedWeapon().gameObject.SetActive(false);          

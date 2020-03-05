@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour
     public float walk_Speed = 0.5f;
     public float run_Speed = 4f;
 
-    public float chase_Distance = 7f;
+    public float chase_Distance = 20f;
     private float current_Chase_Distance;
     public float attack_Distance = 1.8f;
     public float chase_After_Attack_Distance = 2f;

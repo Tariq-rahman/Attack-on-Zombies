@@ -11,6 +11,7 @@ TagManager:
   - FP Camera
   - Enemy
   - Death
+  - EndLevel
   layers:
   - Default
   - TransparentFX

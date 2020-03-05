@@ -51,5 +51,6 @@ public class SceneNames
     public const string DEATH_SCREEN = "DeathScene";
     public const string LEVEL_1 = "Level1";
     public const string MAIN_MENU = "MainMenu";
+    public const string END_LEVEL = "EndLevel";
 }
 
