@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Death
   - EndLevel
+  - GameManager
   layers:
   - Default
   - TransparentFX
