@@ -57,8 +57,8 @@ public class WeaponHandler : MonoBehaviour {
         muzzle_Flash.SetActive(false);
     }
     void Play_ShootSound()
-    {
-        Shoot_Sound.Play();
+    {        
+        Shoot_Sound.PlayOneShot(Shoot_Sound.clip);
     }
     void Play_ReloadSound()
     {

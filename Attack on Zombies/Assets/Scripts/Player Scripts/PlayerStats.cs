@@ -40,8 +40,8 @@ public class PlayerStats : MonoBehaviour
         kill_total.text = val.ToString();
     }
     public void Display_Player_Score(int val)
-    {        
-        player_score.text = val.ToString();
+    {                
+        player_score.text = val.ToString();       
     }
 }
 

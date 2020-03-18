@@ -50,7 +50,25 @@ public class GameManager : MonoBehaviour
     public void Calculate_Score()
     {
         // minus time and bullets used.
-        player_Score = (kill_Count * 50) + (vaccine_Count * 200);
+        player_Score = (kill_Count * 50) + (vaccine_Count * 200);        
         player_stats.Display_Player_Score(player_Score);
+    }
+    public void End_Game()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag(Tags.PLAYER_TAG);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(Tags.ENEMY_TAG);
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i].GetComponent<EnemyController>().enabled = false;
+        }
+        EnemyManager.instance.StopSpawning();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        player.GetComponent<PlayerMovement>().enabled = false;
+        player.GetComponent<PlayerAttack>().enabled = false;
+        player.GetComponent<PlayerFootsteps>().enabled = false;
+        player.GetComponent<WeaponManager>().GetCurrentSelectedWeapon().gameObject.SetActive(false);
     }
 }

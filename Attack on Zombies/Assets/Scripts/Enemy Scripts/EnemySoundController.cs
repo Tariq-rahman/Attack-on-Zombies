@@ -9,11 +9,11 @@ public class EnemySoundController : MonoBehaviour {
     
     public void Play_Attack_Sound()
     {
-        attack_Sound.Play();
+        attack_Sound.PlayOneShot(attack_Sound.clip);
     }
     public void Play_Scream_Sound()
     {
-        scream_Sound.Play();
+        scream_Sound.PlayOneShot(scream_Sound.clip);
     }
     public void Play_Death_Sound()
     {
@@ -22,7 +22,7 @@ public class EnemySoundController : MonoBehaviour {
 
     public void Play_Injured_Sound()
     {
-        injured_Sound.Play();
+        injured_Sound.PlayOneShot(injured_Sound.clip);
     }  
     public void Play_Idle_Sound()
     {
@@ -30,6 +30,6 @@ public class EnemySoundController : MonoBehaviour {
     }
     public void Play_Short_Scream_Sound()
     {
-        short_Scream_Sound.Play();
+        short_Scream_Sound.PlayOneShot(short_Scream_Sound.clip);
     }
 }

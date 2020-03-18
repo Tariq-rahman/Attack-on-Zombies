@@ -18,10 +18,10 @@ public class EnemyController : MonoBehaviour
 
     private EnemyState enemy_State;
 
-    public float walk_Speed = 0.5f;
+    public float walk_Speed = 1f;
     public float run_Speed = 4f;
 
-    public float chase_Distance = 20f;
+    public float chase_Distance = 30f;
     private float current_Chase_Distance;
     public float attack_Distance = 1.8f;
     public float chase_After_Attack_Distance = 2f;
@@ -30,7 +30,7 @@ public class EnemyController : MonoBehaviour
     public float patrol_For_This_Time = 15f;
     private float patrol_Timer;
 
-    public float wait_Before_Attack = 2f;
+    public float wait_Before_Attack = 1f;
     private float attack_Timer;
 
     private Transform target;

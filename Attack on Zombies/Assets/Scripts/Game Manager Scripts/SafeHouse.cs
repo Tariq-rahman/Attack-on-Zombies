@@ -20,21 +20,7 @@ public class SafeHouse : MonoBehaviour {
         if(other.tag == Tags.PLAYER_TAG && GM.Can_End())
         {
             GM.Calculate_Score();
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag(Tags.ENEMY_TAG);
-
-            for (int i = 0; i < enemies.Length; i++)
-            {
-                enemies[i].GetComponent<EnemyController>().enabled = false;
-            }
-            EnemyManager.instance.StopSpawning();
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-
-            player.GetComponent<PlayerMovement>().enabled = false;
-            player.GetComponent<EnhancedMovement>().enabled = false;
-            player.GetComponent<PlayerAttack>().enabled = false;
-            player.GetComponent<WeaponManager>().GetCurrentSelectedWeapon().gameObject.SetActive(false);
-
+            GM.End_Game();
             end_Level_screen.SetActive(true);
         }       
     }

@@ -14,22 +14,24 @@ public class HealthScript : MonoBehaviour {
     private bool is_Dead;
     public Animator death_Transition;
     private PlayerStats player_Stats;
-    private GameObject GM;
+    private PlayerSounds player_sounds;
+    private GameManager GM;
 
     void Awake()
     {
         if (gameObject.tag == Tags.PLAYER_TAG)
         {
             player_Stats = GetComponent<PlayerStats>();
+            player_sounds = GetComponent<PlayerSounds>();
+            death_Transition = GameObject.FindGameObjectWithTag(AnimationTags.DEATH).GetComponent<Animator>();
         } else if (gameObject.tag == Tags.ENEMY_TAG)
         {
             enemy_Anim = GetComponent<EnemyAnimator>();
             enemy_Controller = GetComponent<EnemyController>();
             navAgent = GetComponent<NavMeshAgent>();
             enemy_Sound = GetComponent<EnemySoundController>();
-        }
-        death_Transition = GameObject.FindGameObjectWithTag(AnimationTags.DEATH).GetComponent<Animator>();
-        GM = GameObject.FindGameObjectWithTag(Tags.GAME_MANAGER);     
+        }        
+        GM = GameObject.FindGameObjectWithTag(Tags.GAME_MANAGER).GetComponent<GameManager>();     
     }
 
     public void ApplyDamage(float damage)
@@ -42,13 +44,14 @@ public class HealthScript : MonoBehaviour {
         {
             if (enemy_Controller.Enemy_State == EnemyState.PATROL)
             {
-                enemy_Controller.chase_Distance = 50f;
+                enemy_Controller.chase_Distance = 70f;
                 enemy_Sound.Play_Scream_Sound();
             }
         }
         if (gameObject.tag == Tags.PLAYER_TAG)
         {
-            //play hurt sounds
+            //play hurt sound todo
+            player_sounds.Play_Hurt_Sound();
             player_Stats.Display_HealthStats(health);
         }
         if (health <= 0)
@@ -62,22 +65,9 @@ public class HealthScript : MonoBehaviour {
     {
         if (gameObject.tag == Tags.PLAYER_TAG)
         {
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag(Tags.ENEMY_TAG);
-
-            for (int i = 0; i < enemies.Length; i++)
-            {
-                enemies[i].GetComponent<EnemyController>().enabled = false;
-            }
-
-            // call enemy manager to stop spawning enemies
-            EnemyManager.instance.StopSpawning();
-
-            GetComponent<PlayerMovement>().enabled = false;
-            GetComponent<EnhancedMovement>().enabled = false;
-            GetComponent<PlayerAttack>().enabled = false;
-            GetComponent<WeaponManager>().GetCurrentSelectedWeapon().gameObject.SetActive(false);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            GM.End_Game();
+            // Player death sound todo
+            player_sounds.Play_Death_Sound();
             death_Transition.SetBool(AnimationTags.IS_DEAD, is_Dead);
 
         } else if (gameObject.tag == Tags.ENEMY_TAG)
