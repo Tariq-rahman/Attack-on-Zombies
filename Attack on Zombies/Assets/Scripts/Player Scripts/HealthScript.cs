@@ -65,7 +65,7 @@ public class HealthScript : MonoBehaviour {
     {
         if (gameObject.tag == Tags.PLAYER_TAG)
         {
-            GM.End_Game();
+            GM.StopGame();
             // Player death sound todo
             player_sounds.Play_Death_Sound();
             death_Transition.SetBool(AnimationTags.IS_DEAD, is_Dead);

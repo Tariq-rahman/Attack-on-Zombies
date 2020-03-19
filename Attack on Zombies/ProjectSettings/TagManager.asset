@@ -13,6 +13,8 @@ TagManager:
   - Death
   - EndLevel
   - GameManager
+  - SaveManager
+  - Vaccine
   layers:
   - Default
   - TransparentFX

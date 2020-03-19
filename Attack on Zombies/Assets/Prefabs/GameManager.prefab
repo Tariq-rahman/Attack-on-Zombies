@@ -58,8 +58,8 @@ GameObject:
   - component: {fileID: 64882275295135586}
   - component: {fileID: 114793962267474084}
   m_Layer: 0
-  m_Name: Vaccine
-  m_TagString: Untagged
+  m_Name: Vaccine 1
+  m_TagString: Vaccine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 114867449955636060}
   m_Layer: 0
   m_Name: Vaccine 3
-  m_TagString: Untagged
+  m_TagString: Vaccine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 114714840336333708}
   m_Layer: 0
   m_Name: Vaccine 2
-  m_TagString: Untagged
+  m_TagString: Vaccine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2904,8 +2904,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a424eff9b4b3354b8f42fe458c6a3a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vaccine_Requirement_Count: 3
+  requiredVaccines:
+  - {fileID: 1066374980700654}
+  - {fileID: 1337016423598212}
+  - {fileID: 1198628762961032}
   kill_Requirement_Count: 5
+  inGameMenu: {fileID: 0}
 --- !u!114 &114714840336333708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2917,6 +2921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2156efec66f8d1942958be30589deec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: 1
 --- !u!114 &114793962267474084
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2928,6 +2933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2156efec66f8d1942958be30589deec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: 1
 --- !u!114 &114867449955636060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2939,6 +2945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2156efec66f8d1942958be30589deec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: 1
 --- !u!114 &114904709574492106
 MonoBehaviour:
   m_ObjectHideFlags: 1

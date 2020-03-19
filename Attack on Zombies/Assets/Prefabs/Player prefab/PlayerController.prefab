@@ -12472,7 +12472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 15
-  damage: 20
+  damage: 50
   arrow_Prefab: {fileID: 1593378378788870, guid: 4a4fd0e045470064bb75a61788b55869,
     type: 2}
   spear_Prefab: {fileID: 1598826070132114, guid: 9f1444bf9da691e4a9cc133daba6ffaf,

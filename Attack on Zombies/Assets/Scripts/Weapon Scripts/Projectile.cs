@@ -27,17 +27,19 @@ public class Projectile : MonoBehaviour {
         transform.LookAt(transform.position + body.velocity);
     }
 
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider target)
     {
+        if (target.tag == Tags.ENEMY_TAG)
+        {
 
+            target.GetComponent<HealthScript>().ApplyDamage(damage);
+
+            gameObject.SetActive(false);
+
+        }
     }
 	// Use this for initialization
 	void Start () {
         Invoke("DeactivateGameObject", deactivate_timer);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	}		
 }

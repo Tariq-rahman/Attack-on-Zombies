@@ -20,7 +20,7 @@ public class SafeHouse : MonoBehaviour {
         if(other.tag == Tags.PLAYER_TAG && GM.Can_End())
         {
             GM.Calculate_Score();
-            GM.End_Game();
+            GM.StopGame();
             end_Level_screen.SetActive(true);
         }       
     }

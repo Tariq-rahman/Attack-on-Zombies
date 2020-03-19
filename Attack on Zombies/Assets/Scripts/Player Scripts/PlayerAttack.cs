@@ -90,7 +90,7 @@ public class PlayerAttack : MonoBehaviour {
             // if we press and hold right mouse button
             if(Input.GetMouseButtonDown(1)) {
 
-                zoomCameraAnim.Play(AnimationTags.ZOOM_IN_ANIM);
+                zoomCameraAnim.Play(AnimationTags.ZOOM_IN_ANIM);                
 
                 crosshair.SetActive(false);
             }
@@ -99,7 +99,6 @@ public class PlayerAttack : MonoBehaviour {
             if (Input.GetMouseButtonUp(1)) {
 
                 zoomCameraAnim.Play(AnimationTags.ZOOM_OUT_ANIM);
-
                 crosshair.SetActive(true);
             }
 

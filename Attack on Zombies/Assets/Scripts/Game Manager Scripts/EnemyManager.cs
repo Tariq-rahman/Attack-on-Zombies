@@ -61,7 +61,7 @@ public class EnemyManager : MonoBehaviour {
             zombie_count = initial_zombie_count;
         }
     }
-    IEnumerator CheckToSpawnEnemies()
+    public IEnumerator CheckToSpawnEnemies()
     {
         yield return new WaitForSeconds(grace_period);
         Spawn_Enemies();
